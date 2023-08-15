@@ -103,7 +103,9 @@ public final class SharedDrawable {
 
             // Create a shared texture object for the icon texture array.
             gl = sharedDrawable.getGL().getGL3();
+            
             final int[] textureName = new int[1];
+            gl.glGetError();
             gl.glGenTextures(1, textureName, 0);
             iconTextureName = textureName[0];
 

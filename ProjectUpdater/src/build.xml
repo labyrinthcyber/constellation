@@ -11,21 +11,31 @@
     <target name="update-dependencies" if="update.dependencies" depends="skip-update-dependencies,build-project-updater,clean-dependencies,-load-ivy-tasks">
         <!--Run ivy-->
         <ivy:resolve file="./src/ivy.xml" />
-        <ivy:retrieve pattern="release/modules/ext/[artifact]-[revision].[ext]" sync="true"/>
+        <ivy:retrieve pattern="release/modules/ext/[artifact]-[type]-[revision](-[classifier])(.[ext])" sync="true"/>
 
-        <!--- START OF DELETABLE SECTION WHEN THIS IS IN MAVEN -->
-        <echo level="info" message="installing unfolding-maps..." if:set="third.party.depdendencies"/>
+<!--        - START OF DELETABLE SECTION WHEN THIS IS IN MAVEN 
+-->        <echo level="info" message="installing unfolding-maps..." if:set="third.party.depdendencies"/>
         <get if:set="third.party.depdendencies"
              dest="${suite.dir}/CoreDependencies/release/modules/ext" 
              usetimestamp="true">
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/unfolding-master-20171010.jar"/>
         </get>
     
-        <echo level="info" message="installing gluegen..." if:set="third.party.depdendencies"/>
+<!--        <echo level="info" message="installing gluegen..." if:set="third.party.depdendencies"/>
         <get if:set="third.party.depdendencies"
              dest="${suite.dir}/CoreDependencies/release/modules/ext" 
              usetimestamp="true">
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/gluegen-rt.jar"/>
+            
+            <url url="https://jogamp.org/deployment/v2.5.0-rc-20230813/jar/gluegen-rt.jar"/>
+            <url url="https://jogamp.org/deployment/v2.5.0-rc-20230813/jar/gluegen-rt-natives-macosx-universal.jar"/>
+            
+            <url url="file:///Users/thom/Documents/Constellation/jogamp-all-platforms-rc4-bigsur/jar/gluegen-rt.jar"/>
+            <url url="file:///Users/thom/Documents/Constellation/jogamp-all-platforms-rc4-bigsur/jar/gluegen-rt-natives-macosx-universal.jar"/>
+            
+            <url url="file:///Users/thom/Desktop/constellation_debugging/projects/jogamp/gluegen/build/gluegen-rt.jar"/>
+            <url url="file:///Users/thom/Desktop/constellation_debugging/projects/jogamp/gluegen/build/gluegen-rt-natives-macosx-universal.jar"/>
+            
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/gluegen-rt-natives-linux-amd64.jar"/>
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/gluegen-rt-natives-linux-i586.jar"/>
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/gluegen-rt-natives-macosx-universal.jar"/>
@@ -38,6 +48,13 @@
              dest="${suite.dir}/CoreDependencies/release/modules/ext" 
              usetimestamp="true">
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/jocl.jar"/>
+            
+            <url url="https://jogamp.org/deployment/v2.5.0-rc-20230813/jar/jocl.jar"/>
+            <url url="https://jogamp.org/deployment/v2.5.0-rc-20230813/jar/jocl-natives-macosx-universal.jar"/>
+            
+            <url url="file:///Users/thom/Documents/Constellation/jogamp-all-platforms-rc4-bigsur/jar/jocl.jar"/>
+            <url url="file:///Users/thom/Documents/Constellation/jogamp-all-platforms-rc4-bigsur/jar/jocl-natives-macosx-universal.jar" />
+            
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/jocl-natives-linux-amd64.jar"/>
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/jocl-natives-linux-i586.jar"/>
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/jocl-natives-macosx-universal.jar"/>
@@ -50,6 +67,16 @@
              dest="${suite.dir}/CoreDependencies/release/modules/ext" 
              usetimestamp="true">
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/jogl-all.jar"/>
+            
+            <url url="file:///Users/thom/Documents/Constellation/jogamp-all-platforms-rc4-bigsur/jar/jogl-all.jar"/>
+            <url url="file:///Users/thom/Documents/Constellation/jogamp-all-platforms-rc4-bigsur/jar/jogl-all-natives-macosx-universal.jar"/>
+            
+            <url url="https://jogamp.org/deployment/v2.5.0-rc-20230813/jar/jogl-all.jar"/>
+            <url url="https://jogamp.org/deployment/v2.5.0-rc-20230813/jar/jogl-all-natives-macosx-universal.jar"/>
+            
+            <url url="file:///Users/thom/Desktop/constellation_debugging/projects/jogamp/jogl/build/jar/jogl-all.jar"/>
+            <url url="file:///Users/thom/Desktop/constellation_debugging/projects/jogamp/jogl/build/jar/jogl-all-natives-macosx-universal.jar"/>
+            
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/jogl-all-natives-linux-amd64.jar"/>
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/jogl-all-natives-linux-i586.jar"/>
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/jogl-all-natives-macosx-universal.jar"/>
@@ -62,6 +89,8 @@
              dest="${suite.dir}/CoreDependencies/release/modules/ext" 
              usetimestamp="true">
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/newt.jar"/>
+            <url url="file:///Users/thom/Documents/Constellation/jogamp-all-platforms-rc4-bigsur/jar/atomic/newt.jar"/>
+            <url url="https://jogamp.org/deployment/v2.5.0-rc-20230813/jar/atomic/newt.jar"/>
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/newt-natives-windows-i586.jar"/>
         </get>
     
@@ -71,14 +100,16 @@
              usetimestamp="true">
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/nativewindow-natives-windows-i586.jar"/>
             <url url="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/JOGL%202.4.0/nativewindow.jar"/>
-        </get>
+            <url url="https://jogamp.org/deployment/v2.5.0-rc-20230813/jar/atomic/nativewindow.jar"/>
+            <url url="file:///Users/thom/Documents/Constellation/jogamp-all-platforms-rc4-bigsur/jar/atomic/nativewindow.jar"/>
+        </get>-->
     
         <echo level="info" message="installing processing..." if:set="third.party.depdendencies"/>
         <get if:set="third.party.depdendencies"
              src="https://raw.githubusercontent.com/constellation-app/third-party-dependencies/master/Processing%204.0/core.jar"
              dest="${suite.dir}/CoreDependencies/release/modules/ext" 
-             usetimestamp="true"/>
-        <!--- END OF DELETABLE SECTION WHEN THIS IS IN MAVEN -->    
+             usetimestamp="true"/><!--
+        - END OF DELETABLE SECTION WHEN THIS IS IN MAVEN     -->
         
         <!-- Update the project.xml file to include the downloaded jars -->
         <property name="ProjectUpdater.jar" value="${projectupdater.dir}/dist/ProjectUpdater.jar" />

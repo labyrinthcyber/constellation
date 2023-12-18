@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Australian Signals Directorate
+ * Copyright 2010-2023 Australian Signals Directorate
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@ public class FileParameterType extends PluginParameterType<FileParameterValue> {
      * @param id The String id of the parameter to construct.
      * @return A {@link PluginParameter} of FileParameterType.
      */
-    public static PluginParameter<FileParameterValue> build(String id) {
+    public static PluginParameter<FileParameterValue> build(final String id) {
         return new PluginParameter<>(new FileParameterValue(), INSTANCE, id);
     }
 
@@ -84,7 +84,7 @@ public class FileParameterType extends PluginParameterType<FileParameterValue> {
      * the parameter being constructed.
      * @return A {@link PluginParameter} of FileParameterType.
      */
-    public static PluginParameter<FileParameterValue> build(String id, final FileParameterValue pv) {
+    public static PluginParameter<FileParameterValue> build(final String id, final FileParameterValue pv) {
         return new PluginParameter<>(pv, INSTANCE, id);
     }
 
@@ -134,6 +134,27 @@ public class FileParameterType extends PluginParameterType<FileParameterValue> {
     public static ExtensionFilter getFileFilters(final PluginParameter<FileParameterValue> parameter) {
         return parameter.getParameterValue().getFilter();
     }
+    
+    /**
+     * Determine if the "All Files" selection filter should be enabled for the given parameter. 
+     * This will be active by default when the user is presented with a file selection window. 
+     *
+     * @param parameter A {@link PluginParameter} of this type.
+     * @return boolean that indicates is the accept all file selection filter is enabled.
+     */
+    public static boolean isAcceptAllFileFilterUsed(final PluginParameter<FileParameterValue> parameter) {
+        return parameter.getParameterValue().isAcceptAllFileFilterUsed();
+    }
+    
+    /**
+     * Enable the "All Files" selection filter for the given parameter. 
+     * This will be active by default when the user is presented with a file selection window. 
+     *
+     * @param parameter A {@link PluginParameter} of this type.
+     */
+    public static void enableAcceptAllFileFilter(final PluginParameter<FileParameterValue> parameter) {
+        parameter.getParameterValue().enableAcceptAllFileFilter();
+    }
 
     /**
      * Describes the method of file selection for a parameter of this type.
@@ -141,18 +162,43 @@ public class FileParameterType extends PluginParameterType<FileParameterValue> {
     public enum FileParameterKind {
 
         /**
-         * Allows selection of multiple files.
+         * Allows selection of multiple files. Displays "Open" on the button.
          */
-        OPEN_MULTIPLE,
+        OPEN_MULTIPLE("Open"),
         /**
-         * Allows selection of a single file only.
+         * Allows selection of multiple files. Displays "..." on the button.
          */
-        OPEN,
+        OPEN_MULTIPLE_OBSCURED("..."),
+        /**
+         * Allows selection of a single file only. Displays "Open" on the button.
+         */
+        OPEN("Open"),
+        /**
+         * Allows selection of a single file only. Displays "..." on the button.
+         */
+        OPEN_OBSCURED("..."),
         /**
          * Allows selection of a file, or entry of a non-existing but valid file
-         * path.
+         * path. Displays "Save" on the button.
          */
-        SAVE
+        SAVE("Save"),
+                /**
+         * Allows selection of a file, or entry of a non-existing but valid file
+         * path. Displays "..." on the button.
+         */
+        SAVE_OBSCURED("..."),;
+
+        
+        private final String text;
+        
+        private FileParameterKind(final String text){
+            this.text = text;
+        }
+        
+        @Override
+        public String toString(){
+            return text;
+        }
     }
 
     /**
@@ -166,6 +212,7 @@ public class FileParameterType extends PluginParameterType<FileParameterValue> {
         private final List<String> files;
         private FileParameterKind kind;
         private ExtensionFilter filter;
+        private boolean acceptAllFileFilterUsed;
 
         /**
          * Constructs a new FileParameterValue
@@ -174,6 +221,7 @@ public class FileParameterType extends PluginParameterType<FileParameterValue> {
             files = new ArrayList<>();
             kind = FileParameterKind.OPEN_MULTIPLE; // backward-compatible default.
             filter = null;
+            acceptAllFileFilterUsed = false;
         }
 
         /**
@@ -188,6 +236,7 @@ public class FileParameterType extends PluginParameterType<FileParameterValue> {
             this.files.addAll(files);
             kind = FileParameterKind.OPEN_MULTIPLE; // backward-compatible default.
             filter = null;
+            acceptAllFileFilterUsed = false;
         }
 
         /**
@@ -200,6 +249,7 @@ public class FileParameterType extends PluginParameterType<FileParameterValue> {
             files = new ArrayList<>(fpv.files);
             kind = fpv.kind;
             filter = fpv.filter;
+            acceptAllFileFilterUsed = fpv.acceptAllFileFilterUsed;
         }
 
         /**
@@ -211,6 +261,8 @@ public class FileParameterType extends PluginParameterType<FileParameterValue> {
          * false otherwise.
          */
         public boolean set(final List<File> newFiles) {
+            // TODO: determine a better if condition
+            // this one is comparing List<String> with List<File>
             if (!Objects.equals(files, newFiles)) {
                 final List<File> nf = newFiles != null ? newFiles : Collections.emptyList();
                 files.clear();
@@ -228,7 +280,7 @@ public class FileParameterType extends PluginParameterType<FileParameterValue> {
          * holding.
          */
         public List<File> get() {
-            List<File> fileObjects = new ArrayList<>();
+            final List<File> fileObjects = new ArrayList<>();
             files.forEach(f -> fileObjects.add(new File(f.trim())));
             return Collections.unmodifiableList(fileObjects);
         }
@@ -271,6 +323,22 @@ public class FileParameterType extends PluginParameterType<FileParameterValue> {
          */
         public void setFilter(final ExtensionFilter filter) {
             this.filter = filter;
+        }
+        
+        /**
+         * Determine if the "All Files" selection filter is used.
+         *
+         * @return boolean indicating if the accept all file filter is used.
+         */
+        public boolean isAcceptAllFileFilterUsed() {
+            return acceptAllFileFilterUsed;
+        }
+        
+        /**
+         * Ensure the "All Files" selection filter is used.
+         */
+        public void enableAcceptAllFileFilter() {
+            acceptAllFileFilterUsed = true;
         }
 
         @Override
@@ -322,14 +390,10 @@ public class FileParameterType extends PluginParameterType<FileParameterValue> {
 
         @Override
         public boolean equals(final Object obj) {
-            if (obj == null) {
-                return false;
-            }
-            if (getClass() != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             final FileParameterValue other = (FileParameterValue) obj;
-
             return files.equals(other.files);
         }
 

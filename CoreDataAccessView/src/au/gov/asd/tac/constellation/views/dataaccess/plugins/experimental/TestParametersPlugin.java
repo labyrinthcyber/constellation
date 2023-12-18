@@ -56,6 +56,7 @@ import au.gov.asd.tac.constellation.plugins.parameters.types.StringParameterType
 import au.gov.asd.tac.constellation.plugins.parameters.types.StringParameterValue;
 import au.gov.asd.tac.constellation.plugins.templates.PluginTags;
 import au.gov.asd.tac.constellation.utilities.color.ConstellationColor;
+import au.gov.asd.tac.constellation.utilities.file.FileExtensionConstants;
 import au.gov.asd.tac.constellation.views.dataaccess.CoreGlobalParameters;
 import au.gov.asd.tac.constellation.views.dataaccess.plugins.DataAccessPlugin;
 import au.gov.asd.tac.constellation.views.dataaccess.plugins.DataAccessPluginCoreType;
@@ -70,7 +71,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
@@ -89,7 +89,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import org.netbeans.api.annotations.common.StaticResource;
 import org.openide.util.NbBundle.Messages;
 import org.openide.util.lookup.ServiceProvider;
@@ -210,7 +210,6 @@ public class TestParametersPlugin extends RecordStoreQueryPlugin implements Data
         final PluginParameter<LocalDateParameterValue> date = LocalDateParameterType.build(LOCAL_DATE_PARAMETER_ID);
         date.setName("Date");
         date.setDescription("Pick a day");
-        date.setLocalDateValue(LocalDate.of(2001, Month.JANUARY, 1));
         params.addParameter(date);
 
         final List<GraphElementTypeParameterValue> elementTypeOptions = new ArrayList<>();
@@ -293,7 +292,7 @@ public class TestParametersPlugin extends RecordStoreQueryPlugin implements Data
         saveFileParam.setName("Output file");
         saveFileParam.setDescription("A file to write stuff to");
         FileParameterType.setKind(saveFileParam, FileParameterType.FileParameterKind.SAVE);
-        FileParameterType.setFileFilters(saveFileParam, new FileChooser.ExtensionFilter("Text files", "*.txt"));
+        FileParameterType.setFileFilters(saveFileParam, new ExtensionFilter("Text files", FileExtensionConstants.TEXT));
         params.addParameter(saveFileParam);
 
         final PluginParameter<ColorParameterValue> color = ColorParameterType.build(COLOR_PARAMETER_ID);
@@ -368,10 +367,36 @@ public class TestParametersPlugin extends RecordStoreQueryPlugin implements Data
     }
 
     @Override
-    protected RecordStore query(final RecordStore query, final PluginInteraction interaction, final PluginParameters parameters) throws PluginException {
-        final int sleep = parameters.getParameters().get(SLEEP_PARAMETER_ID).getIntegerValue();
-        for (int i = 0; i < sleep; i++) {
-            LOGGER.log(Level.INFO, "sleep {0}/{1}", new Object[]{i, sleep});
+    protected RecordStore query(final RecordStore query, final PluginInteraction interaction, final PluginParameters parameters) throws PluginException, InterruptedException {
+        
+        // Retrieve PluginParameter values 
+        final int sleepDuration = parameters.getParameters().get(SLEEP_PARAMETER_ID).getIntegerValue();
+        final LocalDate localDate = parameters.getLocalDateValue(LOCAL_DATE_PARAMETER_ID);
+        final ParameterValue elementType = parameters.getSingleChoice(ELEMENT_TYPE_PARAMETER_ID);
+        final MultiChoiceParameterValue planets = parameters.getMultiChoiceValue(PLANETS_PARAMETER_ID);
+        final String queryName = parameters.getStringValue(CoreGlobalParameters.QUERY_NAME_PARAMETER_ID);
+        final boolean crash = parameters.getBooleanValue(CRASH_PARAMETER_ID);
+        final DateTimeRange dateTimeRange = parameters.getDateTimeRangeValue(CoreGlobalParameters.DATETIME_RANGE_PARAMETER_ID);
+        final String interactionLevel = parameters.getParameters().get(INTERACTION_PARAMETER_ID).getStringValue();
+        final String exceptionLevel = parameters.getParameters().get(LEVEL_PARAMETER_ID).getStringValue();
+        
+        // No Errors thrown as parameters values are checked before being used
+        
+        // Local process-tracking variables (Process is indeteminate due to the nature of plugin reporting through the logger)
+        final int currentProcessStep = 0;
+        final int totalProcessSteps = -1; 
+        interaction.setProgress(currentProcessStep, totalProcessSteps, "Testing parameters...", true);
+        
+        //Display parameter information
+        LOGGER.log(Level.INFO, "parameters: {0}", parameters);
+        LOGGER.log(Level.INFO, "==== begin string values");
+        parameters.getParameters().values().stream().forEach(param ->
+                LOGGER.log(Level.INFO, "String {0}: \"{1}\"", new Object[]{param.getName(), param.getStringValue()}));
+        LOGGER.log(Level.INFO, "==== end string values");
+        
+        // Using PluginParameter<IntegerParameterValue>
+        for (int i = 0; i < sleepDuration; i++) {
+            LOGGER.log(Level.INFO, "sleep {0}/{1}", new Object[]{i, sleepDuration});
             try {
                 Thread.sleep(1000);
             } catch (final InterruptedException ex) {
@@ -379,11 +404,9 @@ public class TestParametersPlugin extends RecordStoreQueryPlugin implements Data
                 Thread.currentThread().interrupt();
             }
         }
-        LOGGER.log(Level.INFO, "slept for {0} seconds", sleep);
-
-        LOGGER.log(Level.INFO, "parameters: {0}", parameters);
-        LOGGER.log(Level.INFO, "GraphElementType: {0}", parameters.getSingleChoice(ELEMENT_TYPE_PARAMETER_ID));
-        final LocalDate localDate = parameters.getLocalDateValue(LOCAL_DATE_PARAMETER_ID);
+        LOGGER.log(Level.INFO, "slept for {0} seconds", sleepDuration);
+        
+        // Using PluginParameter<LocalDateParameterValue>
         LOGGER.log(Level.INFO, "localdate: {0} ", localDate);
         if (localDate != null) {
             final Calendar cal = LocalDateParameterType.toCalendar(localDate);
@@ -392,36 +415,11 @@ public class TestParametersPlugin extends RecordStoreQueryPlugin implements Data
             LOGGER.log(Level.INFO, String.format("fields: [%04d-%02d-%02d]",
                     localDate.get(ChronoField.YEAR), localDate.get(ChronoField.MONTH_OF_YEAR), localDate.get(ChronoField.DAY_OF_MONTH)));
         }
-
-        final MultiChoiceParameterValue planets = parameters.getMultiChoiceValue(PLANETS_PARAMETER_ID);
+        
+        // Using PluginParameter<MultiChoiceParameterValue>
         planets.getChoices().stream().forEach(planet -> LOGGER.log(Level.INFO, "Planet: {0}", planet));
 
-        LOGGER.log(Level.INFO, "==== begin string values");
-        parameters.getParameters().values().stream().forEach(param ->
-                LOGGER.log(Level.INFO, "String {0}: \"{1}\"", new Object[]{param.getName(), param.getStringValue()}));
-        LOGGER.log(Level.INFO, "==== end string values");
-
-        final File outputDir = DataAccessPreferenceUtilities.getDataAccessResultsDir();
-        if (outputDir != null) {
-            final String fnam = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss")) + "-testChainer.txt";
-            final File fout = new File(outputDir, fnam);
-            try (final PrintWriter writer = new PrintWriter(fout, StandardCharsets.UTF_8.name())) {
-                parameters.getParameters().values().stream().forEach(param -> writer.printf("%s: '%s'", param.getName(), param.getStringValue()));
-            } catch (final FileNotFoundException ex) {
-                LOGGER.log(Level.SEVERE, "File not found", ex);
-            } catch (final UnsupportedEncodingException ex) {
-                LOGGER.log(Level.SEVERE, "The specified file encoding is unsupported", ex);
-            }
-        }
-
-        final List<String> keys = query.keys();
-        while (query.next()) {
-            keys.stream().forEach(key -> LOGGER.log(Level.INFO, String.format("%-20s: %s", key, query.get(key))));
-
-            LOGGER.log(Level.INFO, "--");
-        }
-
-        final boolean crash = parameters.getBooleanValue(CRASH_PARAMETER_ID);
+        // Using PluginParameter<BooleanParameterValue>
         if (crash) {
             throw new RuntimeException("Simulated plugin failure");
         }
@@ -433,15 +431,14 @@ public class TestParametersPlugin extends RecordStoreQueryPlugin implements Data
             Thread.currentThread().interrupt();
         }
 
-        final String queryName = parameters.getStringValue(CoreGlobalParameters.QUERY_NAME_PARAMETER_ID);
-        LOGGER.log(Level.INFO, "query name: {0}", queryName);
-
-        final DateTimeRange dtr = parameters.getDateTimeRangeValue(CoreGlobalParameters.DATETIME_RANGE_PARAMETER_ID);
-        final ZonedDateTime[] dtrStartEnd = dtr.getZonedStartEnd();
+        // Using PluginParameter<DateTimeRangeParameterValue>
+        final ZonedDateTime[] dtrStartEnd = dateTimeRange.getZonedStartEnd();
         LOGGER.log(Level.INFO, "range: (zdt) {0} .. {1}", new Object[]{dtrStartEnd[0], dtrStartEnd[1]});
         LOGGER.log(Level.INFO, "range: (zdt) {0} .. {1}", new Object[]{DateTimeFormatter.ISO_INSTANT.format(dtrStartEnd[0]), DateTimeFormatter.ISO_INSTANT.format(dtrStartEnd[1])});
 
-        final String interactionLevel = parameters.getParameters().get(INTERACTION_PARAMETER_ID).getStringValue();
+        // Testing PluginParameter<SingleChoiceParameterValue>
+        LOGGER.log(Level.INFO, "GraphElementType: {0}", elementType);
+        
         final PluginNotificationLevel pnInteractionLevel;
         if (interactionLevel != null) {
             switch (interactionLevel) {
@@ -469,8 +466,7 @@ public class TestParametersPlugin extends RecordStoreQueryPlugin implements Data
                 interaction.notify(pnInteractionLevel, "Interaction from plugin");
             }
         }
-
-        final String exceptionLevel = parameters.getParameters().get(LEVEL_PARAMETER_ID).getStringValue();
+        
         final PluginNotificationLevel pnExceptionLevel;
         if (exceptionLevel != null) {
             switch (exceptionLevel) {
@@ -498,6 +494,28 @@ public class TestParametersPlugin extends RecordStoreQueryPlugin implements Data
                 throw new PluginException(pnExceptionLevel, "Exception thrown from plugin");
             }
         }
+        
+        final File outputDir = DataAccessPreferenceUtilities.getDataAccessResultsDir();
+        if (outputDir != null) {
+            final String fnam = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss")) + "-testChainer.txt";
+            final File fout = new File(outputDir, fnam);
+            try (final PrintWriter writer = new PrintWriter(fout, StandardCharsets.UTF_8.name())) {
+                parameters.getParameters().values().stream().forEach(param -> writer.printf("%s: '%s'", param.getName(), param.getStringValue()));
+            } catch (final FileNotFoundException ex) {
+                LOGGER.log(Level.SEVERE, "File not found", ex);
+            } catch (final UnsupportedEncodingException ex) {
+                LOGGER.log(Level.SEVERE, "The specified file encoding is unsupported", ex);
+            }
+        }
+        
+        LOGGER.log(Level.INFO, "query name: {0}", queryName);
+        
+        final List<String> keys = query.keys();
+        while (query.next()) {
+            keys.stream().forEach(key -> LOGGER.log(Level.INFO, String.format("%-20s: %s", key, query.get(key))));
+
+            LOGGER.log(Level.INFO, "--");
+        }
 
         // Add nodes containing global query parameters
         final RecordStore results = new GraphRecordStore();
@@ -514,6 +532,7 @@ public class TestParametersPlugin extends RecordStoreQueryPlugin implements Data
 
         results.set(GraphRecordStoreUtilities.TRANSACTION + AnalyticConcept.TransactionAttribute.COMMENT, parameters.toString());
 
+        interaction.setProgress(currentProcessStep, 0, true);
         return results;
     }
 

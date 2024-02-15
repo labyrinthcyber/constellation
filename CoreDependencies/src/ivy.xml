@@ -11,7 +11,8 @@
 
     <dependencies defaultconf="runtime">
         <!-- OpenGL - uncomment when JOGL 2.4.0+ is available on Maven -->
-         <dependency org="org.jogamp.gluegen" name="gluegen-rt" rev="2.5.0-rc-20230813" >
+         <!--<dependency org="org.jogamp.gluegen" name="gluegen-rt" rev="2.5.0-rc-20230813" >-->
+         <dependency org="org.jogamp.gluegen" name="gluegen-rt" rev="2.5.0" >
             <artifact name="gluegen-rt" type="jar" ext="jar"/>
             <artifact name="gluegen-rt" type="jar" ext="jar" e:classifier="natives-linux-amd64"/>
             <!--<artifact name="gluegen-rt" type="jar" ext="jar" e:classifier="natives-linux-i586"/>-->
@@ -19,7 +20,7 @@
             <artifact name="gluegen-rt" type="jar" ext="jar" e:classifier="natives-windows-amd64"/>
             <!--<artifact name="gluegen-rt" type="jar" ext="jar" e:classifier="natives-windows-i586"/>-->
         </dependency>
-        <dependency org="org.jogamp.jocl" name="jocl" rev="2.5.0-rc-20230813">
+        <dependency org="org.jogamp.jocl" name="jocl" rev="2.5.0">
             <artifact name="jocl" type="jar" ext="jar"/>
             <artifact name="jocl" type="jar" ext="jar" e:classifier="natives-linux-amd64"/>
             <!--<artifact name="jocl" type="jar" ext="jar" e:classifier="natives-linux-i586"/>-->
@@ -27,7 +28,7 @@
             <artifact name="jocl" type="jar" ext="jar" e:classifier="natives-windows-amd64"/>
             <!--<artifact name="jocl" type="jar" ext="jar" e:classifier="natives-windows-i586"/>-->
         </dependency>
-        <dependency org="org.jogamp.jogl" name="jogl-all" rev="2.5.0-rc-20230813">
+        <dependency org="org.jogamp.jogl" name="jogl-all" rev="2.5.0">
             <artifact name="jogl-all" type="jar" ext="jar"/>
             <artifact name="jogl-all" type="jar" ext="jar" e:classifier="natives-linux-amd64"/>
             <!--<artifact name="jogl-all" type="jar" ext="jar" e:classifier="natives-linux-i586"/>-->
@@ -35,7 +36,7 @@
             <artifact name="jogl-all" type="jar" ext="jar" e:classifier="natives-windows-amd64"/>
             <!--<artifact name="jogl-all" type="jar" ext="jar" e:classifier="natives-windows-i586"/>-->
         </dependency>
-        <dependency org="org.jogamp.jogl" name="nativewindow" rev="2.5.0-rc-20230813">
+        <dependency org="org.jogamp.jogl" name="nativewindow" rev="2.5.0">
             <artifact name="nativewindow" type="jar" ext="jar"/>
             <artifact name="nativewindow" type="jar" ext="jar" e:classifier="natives-linux-amd64"/>
             <!--<artifact name="jogl-all" type="jar" ext="jar" e:classifier="natives-linux-i586"/>-->
@@ -43,7 +44,7 @@
             <artifact name="nativewindow" type="jar" ext="jar" e:classifier="natives-windows-amd64"/>
             <!--<artifact name="jogl-all" type="jar" ext="jar" e:classifier="natives-windows-i586"/>-->
         </dependency>
-        <dependency org="org.jogamp.jogl" name="newt" rev="2.5.0-rc-20230813">
+        <dependency org="org.jogamp.jogl" name="newt" rev="2.5.0">
             <artifact name="newt" type="jar" ext="jar"/>
             <artifact name="newt" type="jar" ext="jar" e:classifier="natives-linux-amd64"/>
             <!--<artifact name="jogl-all" type="jar" ext="jar" e:classifier="natives-linux-i586"/>-->

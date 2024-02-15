@@ -2,4 +2,4 @@ Manifest-Version: 1.0
 OpenIDE-Module: au.gov.asd.tac.constellation.visual.opengl
 OpenIDE-Module-Install: au/gov/asd/tac/constellation/visual/opengl/install/Installer.class
 OpenIDE-Module-Localizing-Bundle: au/gov/asd/tac/constellation/visual/opengl/Bundle.properties
-OpenIDE-Module-Specification-Version: 1.0.6
+OpenIDE-Module-Specification-Version: 2.0.20230816.060504

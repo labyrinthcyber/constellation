@@ -2,5 +2,5 @@ Manifest-Version: 1.0
 AutoUpdate-Show-In-Client: true
 OpenIDE-Module: au.gov.asd.tac.constellation.views.namedselection
 OpenIDE-Module-Localizing-Bundle: au/gov/asd/tac/constellation/views/namedselection/Bundle.properties
-OpenIDE-Module-Specification-Version: 1.0
+OpenIDE-Module-Specification-Version: 2.0.20230131.091407
 

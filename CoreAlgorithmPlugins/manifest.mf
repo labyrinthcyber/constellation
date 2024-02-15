@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 OpenIDE-Module: au.gov.asd.tac.constellation.plugins.algorithms
 OpenIDE-Module-Localizing-Bundle: au/gov/asd/tac/constellation/plugins/algorithms/Bundle.properties
-OpenIDE-Module-Specification-Version: 1.0
+OpenIDE-Module-Specification-Version: 2.0.20230217.120400
 

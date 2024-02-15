@@ -36,7 +36,7 @@ public class Startup implements Runnable {
 
     // DO NOT CHANGE THIS VALUE
     // continous integration scripts use this to update the version dynamically
-    private static final String VERSION = "(under development)";
+    private static final String VERSION = "v1.9.0-AppleSilicon";
 
     /**
      * This is the system property that is set to true in order to make the AWT

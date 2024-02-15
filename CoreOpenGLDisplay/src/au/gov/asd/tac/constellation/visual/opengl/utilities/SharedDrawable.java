@@ -85,7 +85,7 @@ public final class SharedDrawable {
      */
     private SharedDrawable() {
     }
-
+     
     private static void init() {
         if (isInitialised) {
             throw new RenderException("Can't initialise SharedDrawable more than once.");
@@ -105,7 +105,7 @@ public final class SharedDrawable {
             gl = sharedDrawable.getGL().getGL3();
             
             final int[] textureName = new int[1];
-            gl.glGetError();
+            System.err.println("GL Error: " + gl.glGetError()); //glGetError prevents crashes
             gl.glGenTextures(1, textureName, 0);
             iconTextureName = textureName[0];
 

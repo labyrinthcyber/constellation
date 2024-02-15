@@ -3488,20 +3488,20 @@
                 <binary-origin>release/modules/ext/fontbox-bundle-2.0.22.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gluegen-rt-jar-2.5.0-rc-20230813-natives-linux-amd64.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gluegen-rt-jar-2.5.0-rc-20230813-natives-linux-amd64.jar</binary-origin>
+                <runtime-relative-path>ext/gluegen-rt-jar-2.5.0-natives-linux-amd64.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gluegen-rt-jar-2.5.0-natives-linux-amd64.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gluegen-rt-jar-2.5.0-rc-20230813-natives-macosx-universal.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gluegen-rt-jar-2.5.0-rc-20230813-natives-macosx-universal.jar</binary-origin>
+                <runtime-relative-path>ext/gluegen-rt-jar-2.5.0-natives-macosx-universal.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gluegen-rt-jar-2.5.0-natives-macosx-universal.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gluegen-rt-jar-2.5.0-rc-20230813-natives-windows-amd64.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gluegen-rt-jar-2.5.0-rc-20230813-natives-windows-amd64.jar</binary-origin>
+                <runtime-relative-path>ext/gluegen-rt-jar-2.5.0-natives-windows-amd64.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gluegen-rt-jar-2.5.0-natives-windows-amd64.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gluegen-rt-jar-2.5.0-rc-20230813.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gluegen-rt-jar-2.5.0-rc-20230813.jar</binary-origin>
+                <runtime-relative-path>ext/gluegen-rt-jar-2.5.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gluegen-rt-jar-2.5.0.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/graphics2d-jar-0.30.jar</runtime-relative-path>
@@ -3712,36 +3712,36 @@
                 <binary-origin>release/modules/ext/jgridshift-core-jar-1.3.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jocl-jar-2.5.0-rc-20230813-natives-linux-amd64.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jocl-jar-2.5.0-rc-20230813-natives-linux-amd64.jar</binary-origin>
+                <runtime-relative-path>ext/jocl-jar-2.5.0-natives-linux-amd64.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jocl-jar-2.5.0-natives-linux-amd64.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jocl-jar-2.5.0-rc-20230813-natives-macosx-universal.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jocl-jar-2.5.0-rc-20230813-natives-macosx-universal.jar</binary-origin>
+                <runtime-relative-path>ext/jocl-jar-2.5.0-natives-macosx-universal.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jocl-jar-2.5.0-natives-macosx-universal.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jocl-jar-2.5.0-rc-20230813-natives-windows-amd64.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jocl-jar-2.5.0-rc-20230813-natives-windows-amd64.jar</binary-origin>
+                <runtime-relative-path>ext/jocl-jar-2.5.0-natives-windows-amd64.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jocl-jar-2.5.0-natives-windows-amd64.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jocl-jar-2.5.0-rc-20230813.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jocl-jar-2.5.0-rc-20230813.jar</binary-origin>
+                <runtime-relative-path>ext/jocl-jar-2.5.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jocl-jar-2.5.0.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jogl-all-jar-2.5.0-rc-20230813-natives-linux-amd64.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jogl-all-jar-2.5.0-rc-20230813-natives-linux-amd64.jar</binary-origin>
+                <runtime-relative-path>ext/jogl-all-jar-2.5.0-natives-linux-amd64.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jogl-all-jar-2.5.0-natives-linux-amd64.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jogl-all-jar-2.5.0-rc-20230813-natives-macosx-universal.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jogl-all-jar-2.5.0-rc-20230813-natives-macosx-universal.jar</binary-origin>
+                <runtime-relative-path>ext/jogl-all-jar-2.5.0-natives-macosx-universal.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jogl-all-jar-2.5.0-natives-macosx-universal.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jogl-all-jar-2.5.0-rc-20230813-natives-windows-amd64.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jogl-all-jar-2.5.0-rc-20230813-natives-windows-amd64.jar</binary-origin>
+                <runtime-relative-path>ext/jogl-all-jar-2.5.0-natives-windows-amd64.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jogl-all-jar-2.5.0-natives-windows-amd64.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jogl-all-jar-2.5.0-rc-20230813.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jogl-all-jar-2.5.0-rc-20230813.jar</binary-origin>
+                <runtime-relative-path>ext/jogl-all-jar-2.5.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jogl-all-jar-2.5.0.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/json-bundle-20210307.jar</runtime-relative-path>
@@ -3916,20 +3916,20 @@
                 <binary-origin>release/modules/ext/mockito-inline-jar-3.11.2.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/nativewindow-jar-2.5.0-rc-20230813-natives-linux-amd64.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/nativewindow-jar-2.5.0-rc-20230813-natives-linux-amd64.jar</binary-origin>
+                <runtime-relative-path>ext/nativewindow-jar-2.5.0-natives-linux-amd64.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/nativewindow-jar-2.5.0-natives-linux-amd64.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/nativewindow-jar-2.5.0-rc-20230813-natives-macosx-universal.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/nativewindow-jar-2.5.0-rc-20230813-natives-macosx-universal.jar</binary-origin>
+                <runtime-relative-path>ext/nativewindow-jar-2.5.0-natives-macosx-universal.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/nativewindow-jar-2.5.0-natives-macosx-universal.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/nativewindow-jar-2.5.0-rc-20230813-natives-windows-amd64.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/nativewindow-jar-2.5.0-rc-20230813-natives-windows-amd64.jar</binary-origin>
+                <runtime-relative-path>ext/nativewindow-jar-2.5.0-natives-windows-amd64.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/nativewindow-jar-2.5.0-natives-windows-amd64.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/nativewindow-jar-2.5.0-rc-20230813.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/nativewindow-jar-2.5.0-rc-20230813.jar</binary-origin>
+                <runtime-relative-path>ext/nativewindow-jar-2.5.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/nativewindow-jar-2.5.0.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/net.opengis.fes-jar-29.2.jar</runtime-relative-path>
@@ -3940,20 +3940,20 @@
                 <binary-origin>release/modules/ext/net.opengis.ows-jar-29.2.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/newt-jar-2.5.0-rc-20230813-natives-linux-amd64.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/newt-jar-2.5.0-rc-20230813-natives-linux-amd64.jar</binary-origin>
+                <runtime-relative-path>ext/newt-jar-2.5.0-natives-linux-amd64.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/newt-jar-2.5.0-natives-linux-amd64.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/newt-jar-2.5.0-rc-20230813-natives-macosx-universal.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/newt-jar-2.5.0-rc-20230813-natives-macosx-universal.jar</binary-origin>
+                <runtime-relative-path>ext/newt-jar-2.5.0-natives-macosx-universal.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/newt-jar-2.5.0-natives-macosx-universal.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/newt-jar-2.5.0-rc-20230813-natives-windows-amd64.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/newt-jar-2.5.0-rc-20230813-natives-windows-amd64.jar</binary-origin>
+                <runtime-relative-path>ext/newt-jar-2.5.0-natives-windows-amd64.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/newt-jar-2.5.0-natives-windows-amd64.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/newt-jar-2.5.0-rc-20230813.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/newt-jar-2.5.0-rc-20230813.jar</binary-origin>
+                <runtime-relative-path>ext/newt-jar-2.5.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/newt-jar-2.5.0.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/objenesis-jar-3.2.jar</runtime-relative-path>
